@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matador de Monstros</title>
+    <link rel="stylesheet" href="principal.css">
+    <script src="https://unpkg.com/vue"></script>
+<body>
+
+    <div id="app">
+
+        <section class="container placar-de-vida">
+            <div class="jogadores">
+                <img src="https://www.mixfmpoa.com.br/wp-content/uploads/2018/04/naruto-fillers.png" alt="Naruto">
+                <div class="barra">
+                    <div class="conteudo-barra-jogador" :style="{width : larguraJogador + '%', height: 100 + '%'}"></div>
+                </div>
+                <p>{{larguraJogador}}%</p>
+            </div>
+            <div class="jogadores">
+                <img src="https://vignette.wikia.nocookie.net/naruto/images/e/e7/Sasuke_epi_319.png/revision/latest?cb=20130629210647&path-prefix=pt-br" alt="sasuke">
+                <div class="barra">
+                    <div class="conteudo-barra-monstro" :style="{width : larguraMonstro + '%', height: 100 + '%'}"></div>
+                </div>
+                <p>{{larguraMonstro}}%</p>
+            </div>
+
+        </section>
+        <section class="container placar-de-resultado">
+            <p>Você ganhou!!! :)</p>
+            <p>Você perdeu!!! :(</p>
+        </section>
+        <section class="container placar-de-resultado">
+            <button @click="atacar()" class="butao-rodada">RASENGAN</button>
+            <button @click="ataqueEspecial()" class="butao-rodada">BIJUUDAMA</button>
+            <button class="butao-rodada">CURAR</button>
+            <button>DESISTIR</button>
+
+        </section>
+
+        <section class="container historico">
+            
+        </section>
+
+    </div>
+    
+</body>
+
+<script src="main.js"></script>
+</html>
