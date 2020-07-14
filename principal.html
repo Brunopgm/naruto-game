@@ -11,31 +11,37 @@
     <div id="app">
 
         <section class="container placar-de-vida">
+
             <div class="jogadores">
                 <img src="https://www.mixfmpoa.com.br/wp-content/uploads/2018/04/naruto-fillers.png" alt="Naruto">
                 <div class="barra">
-                    <div class="conteudo-barra-jogador" :style="{width : larguraJogador + '%', height: 100 + '%'}"></div>
+                    <div class="conteudo-barra" :style="[{width : larguraNaruto + '%', height: 100 + '%'}, alterarCorNaruto]"></div>
                 </div>
-                <p>{{larguraJogador}}%</p>
+                <p>{{larguraNaruto}}%</p>
             </div>
+
             <div class="jogadores">
-                <img src="https://vignette.wikia.nocookie.net/naruto/images/e/e7/Sasuke_epi_319.png/revision/latest?cb=20130629210647&path-prefix=pt-br" alt="sasuke">
+                <img src="https://vignette.wikia.nocookie.net/naruto/images/e/e7/Sasuke_epi_319.png/revision/latest?cb=20130629210647&path-prefix=pt-br" alt="Sasuke">
                 <div class="barra">
-                    <div class="conteudo-barra-monstro" :style="{width : larguraMonstro + '%', height: 100 + '%'}"></div>
+                    <div class="conteudo-barra" :style="[{width : larguraSasuke + '%', height: 100 + '%'}, alterarCorSasuke]"></div>
                 </div>
-                <p>{{larguraMonstro}}%</p>
+                <p>{{larguraSasuke}}%</p>
             </div>
 
         </section>
-        <section class="container placar-de-resultado">
-            <p>Você ganhou!!! :)</p>
-            <p>Você perdeu!!! :(</p>
+
+        <section class="container placar-de-resultado" v-show="rodadaFinalizada">
+            <p v-show="narutoVenceu">DATTEBAYO!!! Naruto-chan ganhou :)</p>
+            <p v-show="sasukeVenceu">Vitória de Sasuke-kun!! Você perdeu </p>
+            <p v-show="empate">Empate!!</p>
         </section>
+
         <section class="container placar-de-resultado">
-            <button @click="atacar()" class="butao-rodada">RASENGAN</button>
-            <button @click="ataqueEspecial()" class="butao-rodada">BIJUUDAMA</button>
-            <button class="butao-rodada">CURAR</button>
-            <button>DESISTIR</button>
+            <button @click="iniciarJogo()" class="botoes novo-jogo" v-show="!jogoIniciado">INICIAR NOVO JOGO</button>
+            <button @click="atacar()" id="botao-rodada" class="botoes rasengan" v-show="jogoIniciado">RASENGAN</button>
+            <button @click="ataqueEspecial()" id="botao-rodada" class="botoes bijuudama" v-show="jogoIniciado">BIJUUDAMA</button>
+            <button @click="curar()" id="botao-rodada" class="botoes curar" v-show="jogoIniciado">CURAR</button>
+            <button @click="desistir()" class="botoes desistir" v-show="jogoIniciado">DESISTIR</button>
 
         </section>
 
@@ -45,6 +51,8 @@
 
     </div>
     
+    <!-- https://f0.pngfuel.com/png/15/31/sasuke-uchiha-naruto-uzumaki-itachi-uchiha-naruto-ultimate-ninja-3-sakura-haruno-naruto-png-clip-art.png -->
+
 </body>
 
 <script src="main.js"></script>

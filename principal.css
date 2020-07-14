@@ -27,15 +27,43 @@ img{
     border: #c4c2b9 1px solid;
     height: 20%;
 }
-.conteudo-barra-jogador{
-    
+
+.conteudo-barra{
     background: #147507;
-}
-.conteudo-barra-monstro{
-    height: 100%;
-    background: #147507;
+    max-width: 100%
 }
 
 .placar-de-resultado{
     text-align: center;
+}
+
+/* Botões */
+
+.botoes{
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    color: white;
+}
+.rasengan{
+    background: #2ac3d1;
+    
+}
+
+.bijuudama{
+    background: #a35292;
+    
+}
+.curar{
+    background: #6be3b1;
+    color: #000000
+}
+
+.desistir{
+    background: #8a8884;
+    
+}
+
+.novo-jogo{
+    background: #2974c4;
 }
