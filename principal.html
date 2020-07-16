@@ -15,17 +15,17 @@
             <div class="jogadores">
                 <img src="https://www.mixfmpoa.com.br/wp-content/uploads/2018/04/naruto-fillers.png" alt="Naruto">
                 <div class="barra">
-                    <div class="conteudo-barra" :style="[{width : larguraNaruto + '%', height: 100 + '%'}, alterarCorNaruto]"></div>
+                    <div class="conteudo-barra" :style="[{width : barraDeVidaNaruto + '%', height: 100 + '%'}, alertaPoucaVidaNaruto]"></div>
                 </div>
-                <p>{{larguraNaruto}}%</p>
+                <p>{{barraDeVidaNaruto}}%</p>
             </div>
 
             <div class="jogadores">
                 <img src="https://vignette.wikia.nocookie.net/naruto/images/e/e7/Sasuke_epi_319.png/revision/latest?cb=20130629210647&path-prefix=pt-br" alt="Sasuke">
                 <div class="barra">
-                    <div class="conteudo-barra" :style="[{width : larguraSasuke + '%', height: 100 + '%'}, alterarCorSasuke]"></div>
+                    <div class="conteudo-barra" :style="[{width : barraDeVidaSasuke + '%', height: 100 + '%'},  alertaPoucaVidaSasuke]"></div>
                 </div>
-                <p>{{larguraSasuke}}%</p>
+                <p>{{barraDeVidaSasuke}}%</p>
             </div>
 
         </section>
@@ -49,17 +49,15 @@
 
         </section>
 
-        <section v-show="linha.length">
-            <ul class="container lista" >
-                <li v-for="frase in linha" class="linha">{{frase}}</li>
-                
-            </ul>
-            
-            
+        <section class="container" v-show="arrayLinhasDoPlacar.length">
+            <ul class="lista" >
+                <li v-for="linha in arrayLinhasDoPlacar" class="linha">{{linha}}</li>
+            </ul>      
         </section>
-        
     </div>
     <!-- https://f0.pngfuel.com/png/15/31/sasuke-uchiha-naruto-uzumaki-itachi-uchiha-naruto-ultimate-ninja-3-sakura-haruno-naruto-png-clip-art.png -->
+
+    
 
 </body>
 

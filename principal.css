@@ -68,9 +68,15 @@ img{
     background: #2974c4;
 }
 
+/* Histórico placar */
+.container ul{
+    list-style: none;
+    margin: 0px auto;
+    padding: 0px;
+}
+
 .lista{
     width: 95%;
-    list-style: none;
 }
 .linha:nth-child(odd){
     background: #a35292;
@@ -91,4 +97,23 @@ img{
 
 #botao-rodada:disabled {
     opacity: .2;
+}
+
+
+
+
+@media (max-width:400px){
+    img{
+        width: 130px;
+        height: 80px;
+    }
+   
+}
+
+@media (max-width:360px){
+    img{
+        width: 100px;
+        height: 60px;
+    }
+   
 }
