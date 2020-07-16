@@ -67,3 +67,25 @@ img{
 .novo-jogo{
     background: #2974c4;
 }
+
+.lista{
+    width: 95%;
+    list-style: none;
+}
+.linha:nth-child(odd){
+    background: #a35292;
+}
+
+.linha:nth-child(even){
+    background: #db5e5e;
+    margin-bottom: 8px;
+}
+
+#linha{
+    
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    padding: 4px;
+}
+
