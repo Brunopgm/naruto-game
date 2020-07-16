@@ -38,16 +38,20 @@
 
         <section class="container placar-de-resultado">
             <button @click="iniciarJogo()" class="botoes novo-jogo" v-show="!jogoIniciado">INICIAR NOVO JOGO</button>
-            <button @click="atacar()" id="botao-rodada" class="botoes rasengan" v-show="jogoIniciado">RASENGAN</button>
-            <button @click="ataqueEspecial()" id="botao-rodada" class="botoes bijuudama" v-show="jogoIniciado">BIJUUDAMA</button>
-            <button @click="curar()" id="botao-rodada" class="botoes curar" v-show="jogoIniciado">CURAR</button>
+
+            <button :disabled="rodadaFinalizada" @click="atacar()" id="botao-rodada" class="botoes rasengan" v-show="jogoIniciado">RASENGAN</button>
+
+            <button :disabled="rodadaFinalizada" @click="ataqueEspecial()" id="botao-rodada" class="botoes bijuudama" v-show="jogoIniciado">BIJUUDAMA</button>
+
+            <button :disabled="rodadaFinalizada" @click="curar()" id="botao-rodada" class="botoes curar" v-show="jogoIniciado">CURAR</button>
+            
             <button @click="desistir()" class="botoes desistir" v-show="jogoIniciado">DESISTIR</button>
 
         </section>
 
-        <section v-show="mostrarHistorico">
+        <section v-show="linha.length">
             <ul class="container lista" >
-                <li v-for="frase in linha" id="linha" class="linha">{{frase}}</li>
+                <li v-for="frase in linha" class="linha">{{frase}}</li>
                 
             </ul>
             

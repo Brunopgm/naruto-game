@@ -81,7 +81,7 @@ img{
     margin-bottom: 8px;
 }
 
-#linha{
+.linha{
     
     border-radius: 5px;
     text-align: center;
@@ -89,3 +89,6 @@ img{
     padding: 4px;
 }
 
+#botao-rodada:disabled {
+    opacity: .2;
+}

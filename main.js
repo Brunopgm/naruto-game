@@ -10,35 +10,17 @@ new Vue({
         jogoIniciado: false,
         linha: [],
         cura: false,
-        mostrarHistorico: false
-        
-        
+       
     },
     computed:{
-         
-
-        alterarCorNaruto(){
+        alterarCorNaruto(){ //readonly
             return this.alteraCor(this.larguraNaruto)
         },
         alterarCorSasuke(){
             return this.alteraCor(this.larguraSasuke)
         },
-        
-      
     },
     watch:{
-
-
-        rodadaFinalizada(){
-            if(this.rodadaFinalizada == true){
-
-                let button = document.querySelectorAll("#botao-rodada")
-                button.forEach((botao)=>{
-                    botao.setAttribute("disabled", true)
-                    
-                })
-            }
-        },
         narutoVenceu(){
             if(this.narutoVenceu == true && this.sasukeVenceu == true){
                 this.narutoVenceu = false
@@ -50,68 +32,21 @@ new Vue({
         },
         larguraNaruto(novoValor, antigoValor){
             
-            
             if(!this.cura) {this.adicionarArrayLinha("SASUKE ATINGIU COM", antigoValor - novoValor )}
-            
-            
-            
+   
         },
         larguraSasuke(novoValor, antigoValor){
             if(!this.cura) {this.adicionarArrayLinha("NARUTO ATINGIU COM", antigoValor - novoValor )}
-            
-            
         }
-
     },
         
     methods:{
         atacar(){
-            let numero = this.gerarNumero()
-            let diferenca = this.gerarDiferenca()
-            this.cura = false
-
-            
-            let larguraAnteriorNaruto = this.larguraNaruto
-
-            if(diferenca >= 2){
-                this.larguraNaruto = parseInt(this.larguraNaruto - (numero + diferenca))
-                this.larguraSasuke = parseInt(this.larguraSasuke - numero)
-            
-            }else if(diferenca == 1){
-                this.larguraNaruto = parseInt(this.larguraNaruto - numero)
-                this.larguraSasuke = parseInt(this.larguraSasuke - (numero + diferenca))
-            }else{
-                this.larguraNaruto = parseInt(this.larguraNaruto - numero)
-                this.larguraSasuke = parseInt(this.larguraSasuke - numero)
-            }
-            
-            larguraAnteriorNaruto = larguraAnteriorNaruto - this.larguraNaruto
-            
-            
-            
-            this.larguraNaruto <= 0 ? this.finalizarNaruto(): this.larguraNaruto 
-            this.larguraSasuke <= 0 ? this.finalizarSasuke(): this.larguraSasuke 
+            return this.calculaAtaque(3, 1)
         },
 
         ataqueEspecial(){
-            let numero = this.gerarNumero()
-            let diferenca = this.gerarDiferenca()
-            this.cura = false
-
-            if(diferenca > 4){
-                this.larguraNaruto = parseInt(this.larguraNaruto - (numero + diferenca))
-                this.larguraSasuke = parseInt(this.larguraSasuke - numero)
-            
-            }else if(diferenca >= 1 && diferenca <= 4){
-                this.larguraNaruto = parseInt(this.larguraNaruto - numero)
-                this.larguraSasuke = parseInt(this.larguraSasuke - (numero + diferenca))
-            }else{
-                this.larguraNaruto = parseInt(this.larguraNaruto - numero)
-                this.larguraSasuke = parseInt(this.larguraSasuke - numero)
-            }
-            
-            this.larguraNaruto <= 0 ? this.finalizarNaruto(): this.larguraNaruto 
-            this.larguraSasuke <= 0 ? this.finalizarSasuke(): this.larguraSasuke 
+            return this.calculaAtaque(6, 3)
         },
         curar(){
             let numero = this.gerarNumero()
@@ -152,7 +87,7 @@ new Vue({
             return numero
         },
         gerarDiferenca(){
-            let numeroDiferenca = Math.floor(Math.random() * 5) + 1 
+            let numeroDiferenca = Math.floor(Math.random() * 6) + 1 
             return numeroDiferenca  
         },
         finalizarNaruto(){
@@ -174,26 +109,12 @@ new Vue({
             this.rodadaFinalizada = false
             this.jogoIniciado = false
             this.cura = true
-            
-            
-            
-            
-            let linhaBtrDesistir = document.querySelectorAll('#linha')
-            linhaBtrDesistir.forEach(linha => {
-                linha.remove()
-                
-            });
-            let button = document.querySelectorAll("#botao-rodada")
-            button.forEach((botao)=>{    
-            botao.removeAttribute("disabled")
-        })
-        
-
-
+            this.linha = []
+          
         },
         iniciarJogo(){
             
-            return this.jogoIniciado = true
+           return this.jogoIniciado = true
         },
         alteraCor(vidaJogador){
             if(vidaJogador <= 25){
@@ -205,9 +126,28 @@ new Vue({
             
             let valorDeAtaque = `${jogador} ${valor}` 
             this.linha.push(valorDeAtaque)            
-        }
+        }, 
+        calculaAtaque(valorCasoVitoriaSasuke, valorVitoriaNaruto){
+            let numero = this.gerarNumero()
+            let diferenca = this.gerarDiferenca()
+            this.cura = false
 
-       
+
+            if(diferenca >= valorCasoVitoriaSasuke){
+                this.larguraNaruto = parseInt(this.larguraNaruto - (numero + diferenca))
+                this.larguraSasuke = parseInt(this.larguraSasuke - numero)
+            
+            }else if(diferenca >= valorVitoriaNaruto){
+                this.larguraNaruto = parseInt(this.larguraNaruto - numero)
+                this.larguraSasuke = parseInt(this.larguraSasuke - (numero + diferenca))
+            }else{
+                this.larguraNaruto = parseInt(this.larguraNaruto - numero)
+                this.larguraSasuke = parseInt(this.larguraSasuke - numero)
+            }
+ 
+            this.larguraNaruto <= 0 ? this.finalizarNaruto(): this.larguraNaruto 
+            this.larguraSasuke <= 0 ? this.finalizarSasuke(): this.larguraSasuke 
+        }
     }
 })
 
